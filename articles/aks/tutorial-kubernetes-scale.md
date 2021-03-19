@@ -49,11 +49,13 @@ To manually change the number of pods in the *azure-vote-front* deployment, use 
 kubectl scale --replicas=5 deployment/azure-vote-front
 ```
 
-Run [kubectl get pods][kubectl-get] again to verify that AKS successfully creates the additional pods. After a minute or so, the pods are available in your cluster:
+Run [kubectl get pods][kubectl-get] again to verify that AKS successfully creates the additional pods.
 
 ```console
 kubectl get pods
-
+```
+After a minute or so, the pods are available in your cluster:
+```output
                                     READY     STATUS    RESTARTS   AGE
 azure-vote-back-2606967446-nmpcf    1/1       Running   0          15m
 azure-vote-front-3309479140-2hfh0   1/1       Running   0          3m
@@ -133,11 +135,14 @@ Use `kubectl apply` to apply the autoscaler defined in the `azure-vote-hpa.yaml`
 kubectl apply -f azure-vote-hpa.yaml
 ```
 
-To see the status of the autoscaler, use the `kubectl get hpa` command as follows:
+To see the status of the Horizontal Pod Autoscaler (hpa), use the `kubectl get hpa` command as follows:
 
-```
+```console
 kubectl get hpa
+```
+The following example output shows the status of the autoscaler:
 
+```Output
 NAME               REFERENCE                     TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
 azure-vote-front   Deployment/azure-vote-front   0% / 50%   3         10        3          2m
 ```
